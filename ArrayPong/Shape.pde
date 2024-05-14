@@ -11,9 +11,9 @@ abstract class Shape {
     this.y = y;
     this.w = w;
     this.h = h;
-    defaultCol = 0; //nightModeCol() on its way ;
+    defaultColor = 0; //nightModeCol() on its way ;
     this.startX = x;
-    this.sStartY = y;
+    this.startY = y;
     this.itsColor = itsColor ;
   } //
 }// AB C SHAPE END
@@ -25,15 +25,14 @@ abstract class Shape {
   
   abstract void reset();
 
-  void tableUpdate(float tablexParameter, float tableyParameter, float tablewParameter, float tablehParameter) {
-    tablex = tablexParameter;
-    tabley = tableyParameter;
-    tablew = tablewParameter;
-    tableh = tablehParameter;
+  void tableUpdate(float txParameter, float tyParameter, float twParameter, float thParameter) {
+    tx = txParameter;
+    tabley = tyParameter;
+    tablew = twParameter;
+    tableh = thParameter;
   }
 
   /* color nightModeCol() { ---------- potential nightMode...
    color nm = 0;
    return nm;
    }*/
-}
