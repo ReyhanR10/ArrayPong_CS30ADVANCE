@@ -4,6 +4,8 @@ abstract class Shape {
   float tx, ty, tw, th ;
   float startX, startY ;
   color itsColor, defaultColor ;
+  Boolean scoreComp = false ;
+  Boolean right = false ;
 
   //
   Shape ( float x, float y, float w, float h, color itsColor  ) {
@@ -30,6 +32,16 @@ abstract class Shape {
     tabley = tyParameter;
     tablew = twParameter;
     tableh = thParameter;
+  }
+  
+  void sideCheckUp () {
+    if ( this.x > ( tw*1/2 ) ) {
+      this.right = true ;
+    } else {
+      this.right = false ;
+    }
+  }
+    
   }
 
   /* color nightModeCol() { ---------- potential nightMode...

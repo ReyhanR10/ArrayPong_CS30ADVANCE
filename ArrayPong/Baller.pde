@@ -6,10 +6,10 @@ class Baller extends Circle {
   Boolean scorePan = false;
   Fireworks fireworks;
 
-  Ball (float x, float y, float w, float h, color itsColor) {
+  Baller (float x, float y, float w, float h, color itsColor) {
     super(x, y, w, h, itsColor);
-    xSpeedY = 3*xSpeedChangeDirection();
-    ySpeedX = 3*ySpeedChangeDirection();
+    speedY = 3*xSpeedChangeDirection();
+    speedX = 3*ySpeedChangeDirection();
     xSpeedChangeDirection = 1.2; //bigger more happier
     ySpeedChangeDirection = 1.2;
   }
@@ -18,9 +18,9 @@ class Baller extends Circle {
   float xSpeedChangeDirection() {
     float  xSpeedChangeDirection = int (random(-2, 2));
     while (xSpeedChangeDirection == 0) {
-      xSpeedChange = int (random(-2, 2));
+      xSpeedChangeDirection = int (random(-2, 2));
     }
-    return xSpeedChange;
+    return xSpeedChangeDirection;
   }
 
   float ySpeedChangeDirection() {
@@ -28,7 +28,7 @@ class Baller extends Circle {
     while (ySpeedChangeDirection == 0) {
       ySpeedChangeDirection = int (random(-2, 2));
     }
-    return ySpeedChange;
+    return ySpeedChangeDirection;
   }
 
   void draw() {
@@ -36,8 +36,8 @@ class Baller extends Circle {
     move();
     //pause();
     if (scorePan == true) {
-      this.x = xStart;
-      this.y = yStart;
+      this.x = startX ;
+      this.y = startY ;
       fireworks.draw();
     }
 
@@ -61,28 +61,28 @@ class Baller extends Circle {
 
   void bounce() {
     if (this.right == true) {
-      if (this.x < (paddlex + paddlew + (w/2)) && y > paddley && y < (paddley + paddleh)) {
-        if (this.x > paddlex - w) {
-          this.x = (paddlex + paddlew + (w/2));
-          this.xSpeed *= -1;
+      if (this.x < (paddleX + paddleW + (w/2)) && y > paddleY && y < (paddleY + paddleH)) {
+        if (this.x > paddleX - w) {
+          this.x = (paddleX + paddleW + (w/2));
+          this.speedX *= -1;
         } else {
-          this.xSpeed *= -1;
+          this.speedX *= -1;
         }
       }
     } else {
-      if (this.x > (paddleX - (w/2)) && this.y > paddleY && this.y < (paddley + paddleh)) {
-        if (this.x < paddlex + w) {
-          this.x = (paddlex - (w/2));
+      if (this.x > (paddleX - (w/2)) && this.y > paddleY && this.y < (paddleY + paddleH)) {
+        if (this.x < paddleX + w) {
+          this.x = (paddleX - (w/2));
           this.speedX *= -1;
         } else {
           this.speedX *= -1;
         }
       }
     }
-    if (this.y < tabley + (w/2) || this.y > (tabley + tableh - (w/2))) {
-      this.ySpeed *= -1;
+    if (this.y < ty + (w/2) || this.y > (ty + th - (w/2))) {
+      this.speedY *= -1;
     }
-    if (this.x < tablex + (w/2) || this.x > tablew - (w/2)) {
+    if (this.x < tx + (w/2) || this.x > tw - (w/2)) {
       netExplosion(x, y, 0.5);
       scorePan = true;
     }

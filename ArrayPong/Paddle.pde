@@ -59,18 +59,7 @@ class Paddle extends Rectangle {
     if (this.y < ty) { //error catch
       this.y = ty;
     }
-    if ((y + h) > (t
-    
-    
-    
-          
-          
-          
-          
-          
-          
-          
-           N          y + th)) {
+    if ((y + h) > (ty + th)) {
       this.y = ((ty + th) - h);
     }
   }
@@ -81,18 +70,18 @@ class Paddle extends Rectangle {
     if (this.y > (ballerY + - this.h*1/2 + this.buffering)) {
       this.y -= speed;
     }
-    if (this.y < tabley) { //error catch
-      this.y = tabley;
+    if (this.y < ty) { //error catch
+      this.y = ty;
     }
-    if ((y + h) > (tabley + tableh)) {
-      this.y = ((tabley + tableh) - h);
+    if ((y + h) > (ty + th)) {
+      this.y = ((ty + th) - h);
     }
   }
   void newGameStarted () {
-    if ( this.y < yStart ) {
+    if ( this.y < startY ) {
       this.y += speed ;
     }
-    if ( this.y > yStart ) {
+    if ( this.y > startY ) {
       this.y -= speed;
     }
   }
@@ -100,7 +89,7 @@ class Paddle extends Rectangle {
     ballerY = ballyParameter ;
   }
    void keyPressed() {
-    if (this.right == true ) {
+    if (this.rightX == true ) {
       if (solo  == true || duo == true ) { //WASD
         if (key == 'w' || key == 'W') {
           this.down = false;
@@ -112,7 +101,7 @@ class Paddle extends Rectangle {
         }
       }
     } else {
-      if (twoPlayer == true) { //ARROWS
+      if (duo == true) { //ARROWS
         if (key == CODED && keyCode == UP) {
           this.down = false;
           this.up = true;
