@@ -14,7 +14,7 @@ class Fireworks extends Baller { //UR BALL GOT EFFECT NOW HUH>>???
   //
   //Ball = IM FAST AS F BOIIIIIIIIIIIIIII;
   float xSpeedChangeDirection () {
-    float xSpeedChnageDirection = int ( random ( -3, 3 )) ;
+    float xSpeedChangeDirection = int ( random ( -3, 3 )) ;
     while ( xSpeedChangeDirection == 0 ) {
       xSpeedChangeDirection = int ( random ( -3, 3 )) ;
     }
@@ -22,17 +22,19 @@ class Fireworks extends Baller { //UR BALL GOT EFFECT NOW HUH>>???
   }
   float ySpeedChangeDirection() {
     float ySpeedChangeDirection = int (random(-3, 3));
-    ySpeedChange = int (random(-3, 3));
+    while ( ySpeedChangeDirection == 0 ) {
+    ySpeedChangeDirection = int (random(-3, 3));
   }
   return ySpeedChangeDirection ;
 }
+
 //
-Fireworks ( float x, float y, float w, float h, color itsColor ) {
+Fireworks ( float x, float y, float w, float h, color itsColor, float gravityParameter) {
   super ( x, y, w, h, itsColor ) ;
   for ( int i=0; i < fx.length; i++ ) {
     fx[i] = this.x;
     fy[i] = this.y;
-    fw[i] = random (appWidth*1/90);
+    fw[i] = random (appW*1/90);
     //fH[i] = h;
     fc[i] = color(random(255), random(255), random(255));
     //MAKE IT EXIST ::::::::;
@@ -45,8 +47,8 @@ Fireworks ( float x, float y, float w, float h, color itsColor ) {
 //Methods
 void draw () {
   for ( int i=0; i < fx.length; i++ ) {
-    fill ( fc[c] ) ;
-    ellipse ( fx[i], fy[i], fw[w] ) ;//fh[h] ) ;
+    fill ( fc[itsColor] ) ;
+    ellipse ( fx[i], fy[i], fw[i], fw[i] ) ;//fh[h] ) ;
     fill ( defaultColor ) ;
   }
   move () ;
@@ -55,7 +57,7 @@ void move () {
   for ( int i=0; i < fx.length; i++ ) {
     fySpeed [i] += gravity ;
     fx[i] += fxSpeed [i] * xSpeedChangeDirection ;
-    fy[i] += fySpeed [i] * ySPeedChangeDirection ;
+    fy[i] += fySpeed [i] * ySpeedChangeDirection ;
   }
   bounce () ;
 }
@@ -86,4 +88,6 @@ void reset () {
 void keyPressed () {
 }
 void keyReleased () {
+}
+void mousePressed () {
 }

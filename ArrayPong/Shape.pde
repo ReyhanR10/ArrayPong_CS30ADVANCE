@@ -1,6 +1,7 @@
 abstract class Shape {
   //GV
   float x, y, w, h ;
+  int score ;
   float tx, ty, tw, th ;
   float startX, startY ;
   color itsColor, defaultColor ;
@@ -17,21 +18,21 @@ abstract class Shape {
     this.startX = x;
     this.startY = y;
     this.itsColor = itsColor ;
-  } //
+   //
 }// AB C SHAPE END
  //methods
   abstract void draw();
   
   abstract void keyPressed();
   abstract void keyReleased();
-  
+  abstract void mousePressed () ;
   abstract void reset();
 
   void tableUpdate(float txParameter, float tyParameter, float twParameter, float thParameter) {
     tx = txParameter;
-    tabley = tyParameter;
-    tablew = twParameter;
-    tableh = thParameter;
+    ty = tyParameter;
+    tw = twParameter;
+    th = thParameter;
   }
   
   void sideCheckUp () {
@@ -41,8 +42,8 @@ abstract class Shape {
       this.right = false ;
     }
   }
-    
-  }
+}
+  
 
   /* color nightModeCol() { ---------- potential nightMode...
    color nm = 0;

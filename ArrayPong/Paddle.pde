@@ -4,6 +4,7 @@ class Paddle extends Rectangle {
   float speed, startSpeedComp ;
   float startX ;
   float ballerY ;
+  float ballX, ballY, ballDirection ;
   float buffering ;
 
 
@@ -14,7 +15,7 @@ class Paddle extends Rectangle {
     speed = startSpeedComp ;
     this.upX = false ;
     this.downY = false ;
-    this.rightX = ( random( -250, 250 )) ;
+    this.buffering = ( random( -250, 250 )) ;
   }
 
   //METHODS SHOULD BE HERE OKAY<><><>
@@ -33,9 +34,9 @@ class Paddle extends Rectangle {
     } else {
       this.rightX = false;
     }
-    //HELP 
+    //HELP
   }
-   void movePaddleUp() {
+  void movePaddleUp() {
     y -= speed;
     if (y < ty) { //error catch
       y = ty;
@@ -48,9 +49,9 @@ class Paddle extends Rectangle {
       y = ((ty + th) - h);
     }
   }
-  
-  void BallerS () {
-     if (this.y < (ballerY + - this.h*1/2)) {
+
+  void ballerS () {
+    if (this.y < (ballerY + - this.h*1/2)) {
       this.y += speed;
     }
     if (this.y > (ballerY + - this.h*1/2)) {
@@ -63,8 +64,8 @@ class Paddle extends Rectangle {
       this.y = ((ty + th) - h);
     }
   }
-  void closedUnlocked () { 
-     if (this.y < (ballerY + - this.h*1/2 + this.buffering)) {
+  void closedUnlocked () {
+    if (this.y < (ballerY + - this.h*1/2 + this.buffering)) {
       this.y += speed;
     }
     if (this.y > (ballerY + - this.h*1/2 + this.buffering)) {
@@ -88,52 +89,52 @@ class Paddle extends Rectangle {
   void ballUpdate ( float ballyParameter ) {
     ballerY = ballyParameter ;
   }
-   void keyPressed() {
+  void keyPressed() {
     if (this.rightX == true ) {
       if (solo  == true || duo == true ) { //WASD
         if (key == 'w' || key == 'W') {
-          this.down = false;
-          this.up = true;
+          this.downY = false;
+          this.upX = true;
         }
         if ( key == 's' || key == 'S') {
-          this.up = false;
-          this.down = true;
+          this.upX = false;
+          this.downY = true;
         }
       }
     } else {
       if (duo == true) { //ARROWS
         if (key == CODED && keyCode == UP) {
-          this.down = false;
-          this.up = true;
+          this.downY = false;
+          this.upX = true;
         }
         if (key == CODED && keyCode == DOWN) {
-          this.up = false;
-          this.down = true;
+          this.upX = false;
+          this.downY = true;
         }
       }
     }
   }
- void keyReleased() {
+  void keyReleased() {
     if (this.right == true ) {
       if ( solo == true || duo == true ) { //WASD
         if (key == 'w' || key == 'W') {
-          this.down = false;
-          this.up = false;
+          this.downY = false;
+          this.upX = false;
         }
         if ( key == 's' || key == 'S') {
-          this.up = false;
-          this.down = false;
+          this.upX = false;
+          this.downY = false;
         }
       }
     } else {
       if ( duo == true) { //ARROWS
         if (key == CODED && keyCode == UP) {
-          this.down = false;
-          this.up = false;
+          this.downY = false;
+          this.upX = false;
         }
         if (key == CODED && keyCode == DOWN) {
-          this.up = false;
-          this.down = false;
+          this.upX = false;
+          this.downY = false;
         }
       }
     }
@@ -142,5 +143,38 @@ class Paddle extends Rectangle {
   void reset() {
     this.h = startX;
     this.speed = startSpeedComp ;
+    if ( shapes.get(4).scoreComp == false ) {
+      newGameStarted() ;
+    }
   }
+   void rightPaddleAuto() {
+    if (shapes.get(4).right == true) {
+      if (ballX> tw*3/4) {
+        ballerS();
+      } else {
+        if (ballDirection > 0) { // keep this line if you want the paddle to not move after x direction goes back to the other direction.
+          closedUnlocked();
+        }
+      }
+    } else {
+      newGameStarted();
+    }
+  }
+   void leftPaddleAuto() {
+    if (shapes.get(4).right == false) {
+      if (ballX < tw*1/4) {
+        ballerS ();
+      } else {
+        if (ballDirection < 0) {
+          closedUnlocked();
+        }
+      }
+    } else {
+      newGameStarted();
+    }
+  }
+
+  void mousePressed() {
+  }
+}
 }

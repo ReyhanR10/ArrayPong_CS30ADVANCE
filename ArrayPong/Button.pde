@@ -4,7 +4,7 @@ class Button extends Rectangle {
   Button ( String textParameter, int textSizeParameter, float x, float y, float w, float h, color itsColor ) {
     super ( x, y, w, h, itsColor ) ;
     this.text = textParameter ;
-    this.textSize = textParamater ;
+    this.textSize = textSizeParameter ;
     this.itsOver = itsColor ;
     font = createFont ( "AlBayan", 55 ) ;
   }
@@ -19,7 +19,15 @@ class Button extends Rectangle {
     rect(x, y, w, h);
     fill(defaultColor);
     fill(white);
-    createText(this.text, this.x, this.y, this.w, this.h);
+    createText(this.text, this.textSize, this.x, this.y, this.w, this.h);
     fill(defaultColor);
   }
 } //END SUffering
+void reset () {
+}
+void keyPressed () {
+}
+void keyReleased () {
+}
+void mousePressed () {
+}

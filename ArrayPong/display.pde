@@ -6,7 +6,7 @@ void display () {
   appH = height ;
   fixOr = ( appW >= appH ) ? true : false ;
   println ( "Original :", appW, "by", appH, "-- correct Original Resources :", fixOr ) ;
-  
+  println ( "Bro Its ON" ) ;
 }
 
 void potrait () {
@@ -14,5 +14,4 @@ void potrait () {
   rect ( 0, 0,  width, height ) ;
   fill ( 0 ) ;
   println ( "Stop it" ) ;
-  
 }

@@ -9,8 +9,8 @@ abstract class Circle extends Shape {
 
   abstract void keyPressed () ;
   abstract void keyReleased () ;
-
-  abstract void resetValue () ;
+  abstract void mousePressed () ;
+  abstract void reset () ;
 
   void ball () {
     fill ( itsColor ) ;

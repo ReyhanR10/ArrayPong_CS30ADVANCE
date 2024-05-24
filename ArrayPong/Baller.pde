@@ -3,7 +3,7 @@ class Baller extends Circle {
   float speedX, speedY, xSpeedChangeDirection, ySpeedChangeDirection;
   float paddleX, paddleY, paddleW, paddleH ;
   Boolean right = false;
-  Boolean scorePan = false;
+  Boolean scoreComp = false;
   Fireworks fireworks;
 
   Baller (float x, float y, float w, float h, color itsColor) {
@@ -12,6 +12,7 @@ class Baller extends Circle {
     speedX = 3*ySpeedChangeDirection();
     xSpeedChangeDirection = 1.2; //bigger more happier
     ySpeedChangeDirection = 1.2;
+    
   }
 
   //methods
@@ -35,7 +36,7 @@ class Baller extends Circle {
     ball();
     move();
     //pause();
-    if (scorePan == true) {
+    if (scoreComp == true) {
       this.x = startX ;
       this.y = startY ;
       fireworks.draw();
@@ -52,7 +53,7 @@ class Baller extends Circle {
     this.x += speedX * xSpeedChangeDirection;
     this.y += speedY * ySpeedChangeDirection;
 
-    if (this.x < (tablew*1/2)) {
+    if (this.x < (tw*1/2)) {
       this.right = true;
     } else {
       this.right = false;
@@ -60,19 +61,37 @@ class Baller extends Circle {
   }
 
   void bounce() {
-    if (this.right == true) {
-      if (this.x < (paddleX + paddleW + (w/2)) && y > paddleY && y < (paddleY + paddleH)) {
-        if (this.x > paddleX - w) {
-          this.x = (paddleX + paddleW + (w/2));
-          this.speedX *= -1;
+    if (this.right == false) {
+      if (this.x > tw - (w/2)) {
+        netExplosion(x, y, 0.5);
+        shapes.get(5).scoreComp= true;
+
+        if ((shapes.get(5).score - shapes.get(6).score) % 3 == 0) {
+          shapes.get(1).h *= 0.9;
+          shapes.get(1).speedY *= 0.75;
+        }
+      }
+      
+    if (this.x > (paddleX - (w/2)) && this.y > paddleY && this.y < (paddleY + paddleH)) {
+        if (this.x < paddleX + w) {
+          this.x = (paddleX - (w/2));
+          this.speedX*= -1;
         } else {
           this.speedX *= -1;
         }
       }
     } else {
-      if (this.x > (paddleX - (w/2)) && this.y > paddleY && this.y < (paddleY + paddleH)) {
-        if (this.x < paddleX + w) {
-          this.x = (paddleX - (w/2));
+      if (this.x < tx + (w/2)) {
+        netExplosion(x, y, 0.5);
+        shapes.get(6).scoreComp= true;
+        if ((shapes.get(6).score - shapes.get(5).score) % 3 == 0) {
+          shapes.get(2).h *= 0.9;
+          shapes.get(2).speedY *= 0.75;
+        }
+      }
+         if (this.x < (paddleX + paddleW + (w/2)) && y > paddleY && y < (paddleY + paddleH)) {
+        if (this.x > paddleX - w) {
+          this.x = (paddleX + paddleW + (w/2));
           this.speedX *= -1;
         } else {
           this.speedX *= -1;
@@ -82,11 +101,8 @@ class Baller extends Circle {
     if (this.y < ty + (w/2) || this.y > (ty + th - (w/2))) {
       this.speedY *= -1;
     }
-    if (this.x < tx + (w/2) || this.x > tw - (w/2)) {
-      netExplosion(x, y, 0.5);
-      scorePan = true;
-    }
   }
+
 
   /*void onePlayerPaddle () {
    if (onePlayer == true) {
@@ -167,19 +183,33 @@ class Baller extends Circle {
   }
 
   void netExplosion(float xParameter, float yParameter, float gravityParameter) {
+    this.scoreComp = true ;
+    shapes.get(3).scoreComp = true ;
     fireworks = new Fireworks(0, xParameter, yParameter, 0, 0, gravityParameter);
     fireworks.tableUpdate(shapes.get(0).x, shapes.get(0).y, shapes.get(0).w, shapes.get(0).h);
-
-    this.speedX*= xSpeedChangeDirection();
-    this.speedY*= ySpeedChangeDirection();
+    
   }
   
   void reset() {
-    
+    this.scoreComp = false ;
+    this.x = startX ;
+    this.y = startY ;
+    //
+    this.speedX *= xSpeedChangeDirection () ;
+    this.speedY *= ySpeedChangeDirection () ;
   }
   
   void keyPressed() {
-    
+    if ( pause == true && key =='p' ) {
+      if ( this.scoreComp == true ) {
+        pause = false ;
+        this.scoreComp = false ;
+        shapes.get(3).scoreComp = false ;
+        reset () ;
+      } else {
+        pause = false ;
+      }
+    }
   }
   
   void keyReleased() {
@@ -202,5 +232,6 @@ class Baller extends Circle {
    }
    }*/
 }
+
 //RESP:::
 //NETEXPLOSION
