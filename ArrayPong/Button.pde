@@ -1,6 +1,7 @@
 class Button extends Rectangle {
   //GV
   color itsOver ;
+  //
   Button ( String textParameter, int textSizeParameter, float x, float y, float w, float h, color itsColor ) {
     super ( x, y, w, h, itsColor ) ;
     this.text = textParameter ;
@@ -21,7 +22,7 @@ class Button extends Rectangle {
     fill(white);
     createText(this.text, this.textSize, this.x, this.y, this.w, this.h);
     fill(defaultColor);
-  }
+  
 } //END SUffering
 void reset () {
 }
@@ -30,4 +31,5 @@ void keyPressed () {
 void keyReleased () {
 }
 void mousePressed () {
+}
 }

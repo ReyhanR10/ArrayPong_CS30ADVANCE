@@ -1,6 +1,7 @@
 abstract class Shape {
   //GV
   float x, y, w, h ;
+  float speedX, speedY  ;
   int score ;
   float tx, ty, tw, th ;
   float startX, startY ;
@@ -37,9 +38,9 @@ abstract class Shape {
   
   void sideCheckUp () {
     if ( this.x > ( tw*1/2 ) ) {
-      this.right = true ;
-    } else {
       this.right = false ;
+    } else {
+      this.right = true  ;
     }
   }
 }

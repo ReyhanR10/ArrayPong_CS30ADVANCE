@@ -27,7 +27,7 @@ void setup () {
     //
     //
     //BALLLERRRRRRRRRRRRRRR
-    Baller myBall  = new Baller ( tableFun.w*1/2, ( tableFun.y + tableFun.h*1/2 ), tableFun.w*1/35, tableFun.h*1/35 ) ;
+    Baller myBall  = new Baller ( tableFun.w*1/2, ( tableFun.y + tableFun.h*1/2 ), tableFun.w*1/35, tableFun.h*1/35, white) ;
     myBall.tableUpdate( tableFun.x, tableFun.y, tableFun.w, tableFun.h ) ;
     //\\//\\//\//\//
     //PADDLE
@@ -39,14 +39,17 @@ void setup () {
 
     rPaddle.tableUpdate ( tableFun.x, tableFun.y, tableFun.w, tableFun.h  ) ;
     lPaddle.tableUpdate ( tableFun.x, tableFun.y, tableFun.w, tableFun.h  ) ;
-
-
+//
+//
+//
     shapes.add( tableFun ) ;
     shapes.add( rPaddle ) ;
     shapes.add( lPaddle ) ;
     shapes.add( myBall ) ;
     shapes.add( rightScoreBoard ) ;
     shapes.add( leftScoreBoard );
+    shapes.add( restart) ;
+    shapes.add( quit ) ;
   } //
 }
 
@@ -68,6 +71,9 @@ void mousePressed () {
       println ( "Bruh NOT COOL ") ;
       solo = false ;
       duo = false ;
+      //
+      //
+      //
       for ( Shape s : shapes ) {
         s.reset () ;
       }
@@ -102,6 +108,7 @@ void keyPressed () {
   }
   if ( fixOr == true ) {
     for ( Shape s : shapes ) {
+      s.itsColor = s.itsColor ;
     }
   }
 }//
