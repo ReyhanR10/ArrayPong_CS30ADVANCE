@@ -1,4 +1,5 @@
 //Global Variables
+//Use to determine if u single or get a Gf/Bf
 Boolean pause = false ;
 Boolean solo = false ;
 Boolean duo = true ;
@@ -39,9 +40,11 @@ void setup () {
 
     rPaddle.tableUpdate ( tableFun.x, tableFun.y, tableFun.w, tableFun.h  ) ;
     lPaddle.tableUpdate ( tableFun.x, tableFun.y, tableFun.w, tableFun.h  ) ;
+    
+    Menu myMenu = new Menu ( 0, 0, appW, appH, black ) ;
 //
 //
-//
+// //Count shapes started from 0 = ? just count urself!
     shapes.add( tableFun ) ;
     shapes.add( rPaddle ) ;
     shapes.add( lPaddle ) ;
@@ -50,6 +53,7 @@ void setup () {
     shapes.add( leftScoreBoard );
     shapes.add( restart) ;
     shapes.add( quit ) ;
+    shapes.add( myMenu ) ;
   } //
 }
 
@@ -68,7 +72,7 @@ void draw ( ) {
 void mousePressed () {
   if ( fixOr == true ) {
     if ( mouseX >= shapes.get (8).x && mouseX <= ( shapes.get(8).x + shapes.get(8).w) && mouseY >= shapes.get(8).y && mouseY <= (shapes.get(8).y + shapes.get(8).h)) {
-      println ( "Bruh NOT COOL ") ;
+      println ( "Bruh ball moved, COOL ") ;
       solo = false ;
       duo = false ;
       //
