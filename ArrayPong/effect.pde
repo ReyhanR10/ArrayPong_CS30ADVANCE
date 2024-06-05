@@ -7,6 +7,7 @@ void effect () {
   if ( effectM == true ) {
     if ( help1 == OBJ ) {
       for ( Shape s : shapes ) {
+        OBJ = 0 ;
         s.itsColor = color ( random( 255), random( 255 ), random (255) ) ;
         effectSucces () ;
       }
