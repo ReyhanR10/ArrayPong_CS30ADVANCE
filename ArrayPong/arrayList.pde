@@ -15,11 +15,11 @@ void setup () {
   //
   //Algorithm
   if ( fixOr == true ) {
-    PongTable tableFun = new PongTable ( appW*0, appH*0, appW*1/10, appH*8/10, gray) ;
+    PongTable tableFun = new PongTable ( appW*0, appH*1/10, appW, appH*8/10, gray) ;
     //Button Function
     //BUTTON
     Button quit = new Button ( "x", int(appW*1/45 ), appW*17/20, appH*1/30, appW/10, appH/24, blue) ;
-    Button restart  = new Button ( "start again", int(appW*1/50 ), appW*1/20, appH*1/30, appW/10, appH/24, red ) ;
+    Button restart  = new Button ( "start again", int(appW*1/60 ), appW*1/20, appH*1/30, appW/10, appH/24, red ) ;
     //
     //
     //SCOREEEEEEEEEEEEEEEEE;;;;;;
@@ -65,6 +65,7 @@ void draw ( ) {
     for ( Shape s : shapes ) {
       s.draw () ;
     }
+    effect () ;
   }
 }//
 
@@ -83,7 +84,7 @@ void mousePressed () {
       }
       pause = true ;
     }
-    if ( pause == false && mouseX > shapes.get(0).x && mouseX < ( shapes.get(0).x + shapes.get(0).w ) && mouseY > shapes.get(0).y && mouseY < ( shapes.get(0).y + shapes.get (0).h)) {
+    if ( pause == false && mouseX > shapes.get(0).x && mouseX < ( shapes.get(0).x + shapes.get(0).w ) && mouseY > shapes.get(0).y && mouseY < ( shapes.get(0).y + shapes.get(0).h)) {
       println ( "GO" ) ;
       shapes.get(4).x = mouseX ;
       shapes.get(4).y = mouseY ;
@@ -111,8 +112,24 @@ void keyPressed () {
     println ( "YOO ITS RUNNING" );
   }
   if ( fixOr == true ) {
+   if ( key == '1' || key == 'P' ) {
+     if ( effectM == false ){
+       effectSucces () ;
+       effectM = true ;
+       for ( Shape s : shapes ) {
+       s.itsColor = color ( random(255), random(255), random(255));
+     }
+   } else {
+     effectM = false ;
     for ( Shape s : shapes ) {
       s.itsColor = s.itsColor ;
     }
   }
 }//
+for ( Shape s : shapes ) {
+  s.keyPressed () ;
+}
+}
+}
+
+  

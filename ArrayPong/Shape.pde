@@ -43,10 +43,4 @@ abstract class Shape {
       this.right = true  ;
     }
   }
-}
-  
-
-  /* color nightModeCol() { ---------- potential nightMode...
-   color nm = 0;
-   return nm;
-   }*/
+} //END Shape

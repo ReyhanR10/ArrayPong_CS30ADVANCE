@@ -39,8 +39,8 @@ Fireworks ( float x, float y, float w, float h, color itsColor, float gravityPar
     fc[i] = color(random(255), random(255), random(255));
     //MAKE IT EXIST ::::::::;
     gravity = gravityParameter;
-    fxSpeed[i] = random(-3, 3);
-    fySpeed[i] = random(-3, 3);
+    fxSpeed[i] = random(-2, 2);
+    fySpeed[i] = random(-2, 2);
     gravity = gravityParameter;
   }
 }

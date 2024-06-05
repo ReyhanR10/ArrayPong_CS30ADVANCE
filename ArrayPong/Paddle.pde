@@ -97,7 +97,7 @@ class Paddle extends Rectangle {
   }
   void keyPressed() {
     if (this.right == true ) {
-      if (solo  == true || duo == true ) { //WASD
+      if (solo  == true || duo == true ) { //MOVE IT USING KEYS W  A  S  D LIKE FPS GAME
         if (key == 'w' || key == 'W') {
           this.downY = false;
           this.upX = true;

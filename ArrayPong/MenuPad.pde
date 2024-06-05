@@ -8,7 +8,7 @@ class Menu extends Rectangle {
   }
 
   void draw() {
-    
+  
 
     if (pause == true) {
       rectangle();
@@ -26,7 +26,7 @@ class Menu extends Rectangle {
       createText("New game! Select Game Mode Before It Start.", int(appW*1/40), 0, 0, appW, appH);
       fill(defaultColor);
       oneP = new Button("SINGLE?", int(appW*1/40), appW*1/5, appH*3/5, appW*1/5, appH*1/5, shapes.get(0).itsColor );
-      twoP = new Button("IN RELARIONSHIPS?", int(appW*1/40), appW*3/5, appH*3/5, appW*1/5, appH*1/5, shapes.get(0).itsColor);
+      twoP = new Button("IN RELARIONSHIP  ?", int(appW*1/40), appW*3/5, appH*3/5, appW*1/5, appH*1/5, shapes.get(0).itsColor);
       oneP.draw();
       twoP.draw();
       shapes.get(1).reset();
